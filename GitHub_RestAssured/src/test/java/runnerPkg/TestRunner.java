@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features="src\\test\\java\\featureFiles\\Github.feature",
 				 plugin ={"html:target/cucumber-reports.html"},
 				 glue= {"stepDef", "resources"},
-				 tags = "@github")
+				 tags = "@dryrun")
 public class TestRunner {
 
 }

@@ -1,55 +1,55 @@
 Feature: Validate Github API
 
+@github
+Scenario Outline: Validate Trello GET API
+
+Given Github API exists
+When Github GET API is called for the id <Project>
+Then Verify the status code is <statusCode>
+
+Examples: 
+|Test case description |Project				      |statusCode|
+|Valid id 		   	   |TestProject888  		  |200	     |
+|Invalid id 		   |TestProject813	          |400	     |
+
 
 @github
 Scenario Outline: Validate Github POST API
 
 Given Github POST API exists
-When Github POST API is called with the name <nameValue>
-#Then Verify the status code is <statusCode>
-
-Examples: 
-|nameValue		  |statusCode|
-|TestProject222   |201	   |
-
-
-@trello
-Scenario Outline: Validate Trello GET API
-
-Given Trello API exists
-When Trello GET API is called for the id <idValue>
+When Github POST API is called with the name <Project>
 Then Verify the status code is <statusCode>
 
 Examples: 
-|Test case description |idValue				      |statusCode|
-|Valid id 		   	   |639aa49fe472db02c8060012  |200	     |
-|Invalid id 		   |639979c943d992026f7f56df00|400	     |
+|Project		  |statusCode|
+|TestProject246   |201	   |
+
+@github
+Scenario Outline: Validate Github DELETE API
+
+Given Github API exists
+When Github DELETE API is called for the id <Project>
+Then Verify the status code is <statusCode>
+
+Examples: 
+|Test case description |Project				      |statusCode|
+|Valid id 		   	   |TestProject246  		  |204	     |
+|Invalid id 		   |TestProject798			  |400	     |
 
 
-@trello
-Scenario Outline: Validate Trello PUT API
+@dryrun
+Scenario Outline: Validate Github PUT API
 
-Given Trello API exists
-When Trello PUT API is called for the id <idValue> and <nameValue>
+Given Github API exists
+When Github PUT API is called for the id <idValue> and <nameValue>
 Then Verify the status code is <statusCode>
 
 Examples: 
 |Test case description |idValue				 	  |nameValue 		 |statusCode|
-|Valid id 		   	   |639aa49fe472db02c8060012  |sample1 updated   |200	    |
-|Invalid id 		   |639979c943d992026f7f56df00|To do name updated|400	    |
+|Valid id 		   	   |TestProject_444  |TestProject_444_Updated	 |200	    |
+|Invalid id 		   |TestProject_556|TestProject_555_Updated		 |400	    |
 
 
-@trello
-Scenario Outline: Validate Trello DELETE API
-
-Given Trello API exists
-When Trello DELETE API is called for the id <idValue>
-Then Verify the status code is <statusCode>
-
-Examples: 
-|Test case description |idValue				      |statusCode|
-|Valid id 		   	   |639aa49fe472db02c8060012  |200	     |
-|Invalid id 		   |639979c943d992026f7f56df00|400	     |
 
 
 
