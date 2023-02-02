@@ -40,16 +40,19 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import resources.CommonFunctions;
 import resources.LinkConstants;
+import utility.FrameworkUtility;
 
 
 public class StepDefinition extends CommonFunctions{
 
 	RequestSpecification reqSpec;
 	RequestSpecification reqSpec2;
+	FrameworkUtility utility;
+	
 	Response response;
 
 	@Given("Github API exists")
-	public void trello_get_api_exists() {		
+	public void github_get_api_exists() {		
 		log.info("Setting GET/PUT/DELETE API Base URI...");
 		reqSpec = given().spec(requestSpecification());		
 	}
@@ -64,7 +67,7 @@ public class StepDefinition extends CommonFunctions{
 	public void github_get_api_is_called_for_the_id(String idvalue){
 		log.info("Calling Github GET API...");
 		System.out.println("Calling Github GET API..!");
-		response = reqSpec.auth().preemptive().basic("nareshbabumandula","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")
+		response = reqSpec.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
 				.get(LinkConstants.UPDATEDELETEREPO+"/"+idvalue);
 		System.out.println("Response code after getting the project : " + response.getStatusCode());
 	}
@@ -73,17 +76,28 @@ public class StepDefinition extends CommonFunctions{
 	public void gitub_put_api_is_called_for_the_id_and(String idvalue, String nameValue) {
 		log.info("Calling Github PUT API...");
 		System.out.println("Calling Github PUT API..!");
-		response = reqSpec.auth().preemptive().basic("nareshbabumandula","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")
-				.put(LinkConstants.UPDATEDELETEREPO+"/"+idvalue);
-		System.out.println("Response code after updating the project : " + response.getStatusCode());
-		System.out.println("Updated the project : " + idvalue + " with " +nameValue);
+		RequestSpecification request = RestAssured.given();
+		JSONObject requestBody = new JSONObject(); 
+		requestBody.put("name", idvalue.trim());
+		requestBody.put("description", "Test Project updated by RestAssured");
+		requestBody.put("homepage", "https://api.github.com");
+		requestBody.put("private", false);
+		requestBody.put("has_issues", true);
+		requestBody.put("has_projects", true);
+		
+		request.body(requestBody.toJSONString());
+		
+		Response response = request.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
+				.put("https://api.github.com/repos/nareshbabumandula/" +idvalue);
+		System.out.println("Response code is : " + response.getStatusCode());
+		
 	}
 
 	@When("^Github DELETE API is called for the id (.+)$")
 	public void github_delete_api_is_called_for_the_id(String idvalue) {
 		log.info("Calling Github DELETE API...");
 		System.out.println("Calling Github DELETE API..!");
-		response = reqSpec.auth().preemptive().basic("nareshbabumandula","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")
+		response = reqSpec.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
 				.delete(LinkConstants.UPDATEDELETEREPO+"/"+idvalue);
 		System.out.println("Response code after deleting the project : " + response.getStatusCode());
 		System.out.println("Deleted the project : " + idvalue);
@@ -104,10 +118,11 @@ public class StepDefinition extends CommonFunctions{
 		requestParams.put("has_projects", true);
 
 		log.info("Calling Github POST API..."); 
-		response = reqSpec.auth().preemptive().basic("nareshbabumandula","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")
+		response = reqSpec.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
 				.header("Content-Type", "application/json")
 				.body(requestParams.toJSONString()).when()
 				.post(LinkConstants.REPO);
+		System.out.println("Response code is : " + response.getStatusCode());
 	}
 
 	@Then("Verify the status code is {int}")

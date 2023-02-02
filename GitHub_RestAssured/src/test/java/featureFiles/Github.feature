@@ -1,7 +1,7 @@
 Feature: Validate Github API
 
 @github
-Scenario Outline: Validate Trello GET API
+Scenario Outline: Validate Github GET API
 
 Given Github API exists
 When Github GET API is called for the id <Project>
@@ -11,9 +11,9 @@ Examples:
 |Test case description |Project				      |statusCode|
 |Valid id 		   	   |TestProject888  		  |200	     |
 |Invalid id 		   |TestProject813	          |400	     |
+ 
 
-
-@github
+@github123
 Scenario Outline: Validate Github POST API
 
 Given Github POST API exists
@@ -22,7 +22,7 @@ Then Verify the status code is <statusCode>
 
 Examples: 
 |Project		  |statusCode|
-|TestProject246   |201	   |
+|TestProject253   |201	   |
 
 @github
 Scenario Outline: Validate Github DELETE API
