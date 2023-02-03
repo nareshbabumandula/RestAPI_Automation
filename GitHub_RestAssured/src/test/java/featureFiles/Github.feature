@@ -22,7 +22,7 @@ Then Verify the status code is <statusCode>
 
 Examples: 
 |Project		  |statusCode|
-|TestProject253   |201	   |
+|TestProject255   |201	   |
 
 @github
 Scenario Outline: Validate Github DELETE API
