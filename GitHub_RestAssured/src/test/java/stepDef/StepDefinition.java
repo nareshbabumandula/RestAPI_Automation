@@ -1,41 +1,11 @@
 package stepDef;
 
 import static io.restassured.RestAssured.given;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.apache.logging.log4j.LogManager;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.util.PropertySource.Comparator;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.junit.Assert;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import resources.CommonFunctions;
@@ -67,7 +37,7 @@ public class StepDefinition extends CommonFunctions{
 	public void github_get_api_is_called_for_the_id(String idvalue){
 		log.info("Calling Github GET API...");
 		System.out.println("Calling Github GET API..!");
-		response = reqSpec.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
+		response = reqSpec.auth().preemptive().basic(utility.readConfigurationFile("key"),utility.readConfigurationFile("token"))
 				.get(LinkConstants.UPDATEDELETEREPO+"/"+idvalue);
 		System.out.println("Response code after getting the project : " + response.getStatusCode());
 	}
@@ -87,7 +57,7 @@ public class StepDefinition extends CommonFunctions{
 		
 		request.body(requestBody.toJSONString());
 		
-		Response response = request.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
+		Response response = request.auth().preemptive().basic(utility.readConfigurationFile("key"),utility.readConfigurationFile("token"))
 				.put("https://api.github.com/repos/nareshbabumandula/" +idvalue);
 		System.out.println("Response code is : " + response.getStatusCode());
 		
@@ -97,7 +67,7 @@ public class StepDefinition extends CommonFunctions{
 	public void github_delete_api_is_called_for_the_id(String idvalue) {
 		log.info("Calling Github DELETE API...");
 		System.out.println("Calling Github DELETE API..!");
-		response = reqSpec.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
+		response = reqSpec.auth().preemptive().basic(utility.readConfigurationFile("key"),utility.readConfigurationFile("token"))
 				.delete(LinkConstants.UPDATEDELETEREPO+"/"+idvalue);
 		System.out.println("Response code after deleting the project : " + response.getStatusCode());
 		System.out.println("Deleted the project : " + idvalue);
@@ -118,7 +88,7 @@ public class StepDefinition extends CommonFunctions{
 		requestParams.put("has_projects", true);
 
 		log.info("Calling Github POST API..."); 
-		response = reqSpec.auth().preemptive().basic(FrameworkUtility.readConfigurationFile("key"),FrameworkUtility.readConfigurationFile("token"))
+		response = reqSpec.auth().preemptive().basic(utility.readConfigurationFile("key"),utility.readConfigurationFile("token"))
 				.header("Content-Type", "application/json")
 				.body(requestParams.toJSONString()).when()
 				.post(LinkConstants.REPO);
