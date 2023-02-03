@@ -18,7 +18,6 @@ public class StepDefinition extends CommonFunctions{
 	RequestSpecification reqSpec;
 	RequestSpecification reqSpec2;
 	FrameworkUtility utility;
-	
 	Response response;
 
 	@Given("Github API exists")
