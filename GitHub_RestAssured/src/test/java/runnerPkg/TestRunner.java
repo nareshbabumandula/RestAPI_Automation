@@ -7,9 +7,9 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features="src\\test\\java\\featureFiles\\Github.feature",
-				 plugin ={"html:target/cucumber-reports.html"},
+				 plugin ={"pretty","html:target/cucumber-reports.html","rerun:target/failedrerun.txt"},
 				 glue= {"stepDef", "resources"},
-				 tags = "@github123")
+				 tags = "@create")
 public class TestRunner {
 
 }

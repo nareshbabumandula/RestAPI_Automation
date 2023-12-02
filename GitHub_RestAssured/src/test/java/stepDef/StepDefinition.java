@@ -25,7 +25,7 @@ public class StepDefinition extends CommonFunctions{
 		log.info("Setting GET/PUT/DELETE API Base URI...");
 		reqSpec = given().spec(requestSpecification());		
 	}
-
+	
 	@Given("Github POST API exists")
 	public void github_post_api_exists() {		
 		log.info("Setting POST API Base URI...");
@@ -75,7 +75,7 @@ public class StepDefinition extends CommonFunctions{
 	@When("^Github POST API is called with the name (.+)$")
 	public void github_post_api_is_called_with_the_name(String project) {
 
-		RestAssured.baseURI = "https://api.github.com"; 
+		RestAssured.baseURI = FrameworkUtility.readConfigurationFile("baseURI"); 
 		// JSONObject is a class that represents a Simple JSON. 
 		// We can add Key - Value pairs using the put method 
 		JSONObject requestParams = new JSONObject(); 
@@ -93,12 +93,14 @@ public class StepDefinition extends CommonFunctions{
 				.post(LinkConstants.REPO);
 		System.out.println("Response code is : " + response.getStatusCode());
 	}
-
-	@Then("Verify the status code is {int}")
-	public void verify_the_status_code_is(Integer int1) {
+	
+	@Then("Verify the status code is {string}")
+	public void verify_the_status_code_is(String string) {
 		log.info("Verifying the status code...");
-		response.then().assertThat().statusCode(int1);
+		System.out.println("Response code is : " + response.statusCode());
+		response.then().assertThat().statusCode(Integer.parseInt(string));
 	}
+
 
 
 }
