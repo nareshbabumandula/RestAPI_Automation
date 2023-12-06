@@ -1,48 +1,49 @@
 Feature: Validate Github API
 
-@github
+@retrieve
 Scenario Outline: Validate Github GET API
 
 Given Github API exists
 When Github GET API is called for the id <Project>
-Then Verify the status code is <statusCode>
+Then Verify the status code is "<statusCode>"
 
 Examples: 
 |Test case description |Project				      |statusCode|
-|Valid id 		   	   |TestProject888  		  |200	     |
-|Invalid id 		   |TestProject813	          |400	     |
+|Valid id 		   	   |TestProject888  		  |204	     |
+|Invalid id 		   |TestProject5537           |404	     |
  
 
-@github123
+@create
 Scenario Outline: Validate Github POST API
 
 Given Github POST API exists
 When Github POST API is called with the name <Project>
-Then Verify the status code is <statusCode>
+Then Verify the status code is "<statusCode>"
 
 Examples: 
 |Project		  |statusCode|
-|TestProject255   |201	   |
+|TestRepo888|201|
+|TestRepo999|201|
 
-@github
+@delete
 Scenario Outline: Validate Github DELETE API
 
 Given Github API exists
 When Github DELETE API is called for the id <Project>
-Then Verify the status code is <statusCode>
+Then Verify the status code is "<statusCode>"
 
 Examples: 
 |Test case description |Project				      |statusCode|
-|Valid id 		   	   |TestProject246  		  |204	     |
-|Invalid id 		   |TestProject798			  |400	     |
+|Valid id 		   	   |TestGitProject8719 		  |204	     |
+|Invalid id 		   |TestProject798			  |404	     |
 
 
-@dryrun
+@update
 Scenario Outline: Validate Github PUT API
 
 Given Github API exists
 When Github PUT API is called for the id <idValue> and <nameValue>
-Then Verify the status code is <statusCode>
+Then Verify the status code is "<statusCode>"
 
 Examples: 
 |Test case description |idValue				 	  |nameValue 		 |statusCode|
