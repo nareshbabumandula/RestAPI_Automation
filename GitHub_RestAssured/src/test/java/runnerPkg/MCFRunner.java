@@ -1,16 +1,15 @@
 package runnerPkg;
 
 import org.junit.runner.RunWith;
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src\\test\\java\\featureFiles\\Github.feature",
+@CucumberOptions(features="src\\test\\java\\featureFiles\\MyContactForm.feature",
 				 plugin ={"pretty","html:target/cucumber-reports.html","rerun:target/failedrerun.txt"},
 				 glue= {"stepDef", "resources"},
-				 tags = "@create")
-public class TestRunner {
-
+				 tags = "@smoke")
+public class MCFRunner {
 	
+
 }
