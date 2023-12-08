@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features="src\\test\\java\\featureFiles\\MyContactForm.feature",
 				 plugin ={"pretty","html:target/cucumber-reports.html","rerun:target/failedrerun.txt"},
 				 glue= {"stepDef", "resources"},
-				 tags = "@smoke")
+				 tags = "~@smoke or @dryrun")
 public class MCFRunner {
 	
 

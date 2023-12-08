@@ -26,12 +26,14 @@ public class Base {
             ChromeOptions options = new ChromeOptions();
     		options.addArguments("--remote-allow-origins=*");
     		driver = new ChromeDriver(options);
+    		driver.manage().window().maximize();
         }else if(driver.toString().contains("(null)")) {
         	// Set the path to the driver executable depending on the browser you're using
             System.setProperty("webdriver.chrome.driver", "./browsers/chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
     		options.addArguments("--remote-allow-origins=*");
     		driver = new ChromeDriver(options);
+    		driver.manage().window().maximize();
         }
         return driver;
     }
