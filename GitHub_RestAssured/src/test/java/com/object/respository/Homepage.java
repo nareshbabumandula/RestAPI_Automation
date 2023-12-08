@@ -33,7 +33,7 @@ public class Homepage {
 	@FindBy(name = "Submit")
 	public WebElement Submit;
 	
-	@FindBy(xpath = "//div[@id=\"success_status\"]/text()[1]")
+	@FindBy(xpath = "//span[contains(text(),'SUCCESS')]")
 	public WebElement signUpConfirmMessage;
 		
 	public Homepage(Base driver) {

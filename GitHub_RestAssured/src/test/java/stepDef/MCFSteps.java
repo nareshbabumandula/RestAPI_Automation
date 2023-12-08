@@ -39,17 +39,17 @@ public class MCFSteps {
 	
 	@When("I enter Name in the Name text field")
 	public void i_enter_name_in_the_name_text_field() {
-		hp.name.sendKeys("Nikhila");
+		hp.name.sendKeys("Suma");
 	}
 	
 	@When("I enter any valid email address in E-mail Address field")
 	public void i_enter_any_valid_email_address_in_e_mail_address_field() {
-		hp.email.sendKeys("nikhila@gmail.com");
+		hp.email.sendKeys("suma@gmail.com");
 	}
 	
 	@When("I enter user name in User Name field")
 	public void i_enter_user_name_in_user_name_field() {
-	    hp.username.sendKeys("nikhila");
+	    hp.username.sendKeys("suma123");
 	}
 	
 	@When("I enter password in Password field")
@@ -76,7 +76,7 @@ public class MCFSteps {
 	public void i_should_see_a_registration_confirmation_message() {
 	    String message = hp.signUpConfirmMessage.getText();
 	    Boolean[] expected = {true};
-	    Boolean[] actual = {message.contains("Thank you")};
+	    Boolean[] actual = {message.contains("SUCCESS")};
 	    Assert.assertArrayEquals("Failed to sign up since :", expected, actual);
 	}
 }
