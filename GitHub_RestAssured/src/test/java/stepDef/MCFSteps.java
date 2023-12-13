@@ -65,6 +65,14 @@ public class MCFSteps {
 		collector.checkThat(email, "suma123@gmail.com", null);
 	}
 	
+	
+	@When("I enter any valid {string} address in E-mail Address field")
+	public void i_enter_any_valid_address_in_e_mail_address_field(String emailAddress) {
+		hp.setEmail(emailAddress);
+		String email = hp.getEmail();
+		Assert.assertEquals("Expected email is not macthing with actual email entered",emailAddress, email); 
+	}
+	
 	@When("I enter user name in User Name field")
 	public void i_enter_user_name_in_user_name_field() {
 	    hp.username.sendKeys("suma123");
