@@ -1,8 +1,17 @@
 package stepDef;
 
+import java.time.Duration;
+
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.junit.rules.ErrorCollector;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.object.respository.Homepage;
+import com.util.WaitUtils;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,6 +21,7 @@ public class MCFSteps {
 
 	Base base;
 	Homepage hp;
+	WaitUtils waitUtils;
 	
 	public MCFSteps() {
 		hp = new Homepage(base);
@@ -20,12 +30,16 @@ public class MCFSteps {
 	@Given("I access MCF portal")
 	public void i_access_mcf_portal() {
 	    base.getDriver().get("https://www.mycontactform.com/");
+	    // Implicit wait
+	    base.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	}
 	
 	@Then("I should see the MCF login page")
 	public void i_should_see_the_mcf_login_page() {
 		boolean bFlag=false;
 	    try {
+	    	waitUtils.waitForElementToBeClickable(hp.username);
+	    	waitUtils.waitForElement(hp.txtUsername, 20, 500);
 	    	bFlag = base.getDriver().findElement(By.xpath("//h5[contains(text(),'User Login:')]")).isDisplayed();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,7 +58,11 @@ public class MCFSteps {
 	
 	@When("I enter any valid email address in E-mail Address field")
 	public void i_enter_any_valid_email_address_in_e_mail_address_field() {
-		hp.email.sendKeys("suma@gmail.com");
+		hp.setEmail("suma@gmail.com");
+		String email = hp.getEmail();
+		//Assert.assertEquals("Expected email is not macthing with actual email entered","suma@gmail.com", email);
+		ErrorCollector collector = new ErrorCollector();
+		collector.checkThat(email, "suma123@gmail.com", null);
 	}
 	
 	@When("I enter user name in User Name field")
