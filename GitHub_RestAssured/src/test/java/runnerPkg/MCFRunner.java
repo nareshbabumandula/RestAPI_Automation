@@ -5,10 +5,10 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src\\test\\java\\featureFiles\\MyContactForm.feature",
+@CucumberOptions(features="src\\test\\java\\featureFiles\\BasicContactForm.feature",
 				 plugin ={"pretty","html:target/cucumber-reports.html","rerun:target/failedrerun.txt"},
 				 glue= {"stepDef", "resources"},
-				 tags = "~@smoke or @test")
+				 tags = "~@smoke or @dryrun")
 public class MCFRunner {
 	
 

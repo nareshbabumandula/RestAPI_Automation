@@ -10,6 +10,9 @@ import stepDef.Base;
 public class Homepage {
 
 	Base driver;
+	
+	@FindBy(linkText = "Sample Forms")
+	public WebElement sampleForms;
 
 	@FindBy(partialLinkText = "FREE ACCOUNT")
 	public WebElement signup;

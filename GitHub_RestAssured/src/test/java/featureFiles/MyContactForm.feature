@@ -8,7 +8,6 @@ Scenario: Verify the functionality of accessing the mycontactform online portal
 Then I should see the MCF login page
 
 
-@dryrun
 Scenario: Verify the functionality of SIGN UP
 When I click on FREE ACCOUNT SIGNUP! button
 And I enter Name in the Name text field
@@ -21,7 +20,6 @@ And I click on Submit button
 Then I should see a registration confirmation message
 
 
-@test
 Scenario Outline: Verify the functionality of SIGN UP
 When I click on FREE ACCOUNT SIGNUP! button
 And I enter Name in the Name text field
@@ -36,5 +34,7 @@ Examples:
 |email|
 |suma@gmail.com|
 |nikhila@yahoomail.com|
+
+
 
 
