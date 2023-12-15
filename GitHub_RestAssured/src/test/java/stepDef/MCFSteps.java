@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.object.respository.Homepage;
+import com.util.ReadConfig;
 import com.util.WaitUtils;
 
 import io.cucumber.java.en.Given;
@@ -22,6 +23,7 @@ public class MCFSteps {
 	Base base;
 	Homepage hp;
 	WaitUtils waitUtils;
+	ReadConfig config;
 	
 	public MCFSteps() {
 		hp = new Homepage(base);
@@ -29,7 +31,7 @@ public class MCFSteps {
 	
 	@Given("I access MCF portal")
 	public void i_access_mcf_portal() {
-	    base.getDriver().get("https://www.mycontactform.com/");
+		base.getDriver().get(config.readProperty("url"));
 	    // Implicit wait
 	    base.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	}
