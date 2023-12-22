@@ -25,7 +25,10 @@ public class Hooks {
             ScreenshotUtils.captureScreenshot(Base.getDriver(), scenario.getName().replaceAll(" ", "_"));
         }
 		Thread.sleep(4000);
-		base.getDriver().quit();
+		if (!(base.getDriver()==null)) {
+			base.getDriver().quit();
+		}
+		
 	}
 	
 

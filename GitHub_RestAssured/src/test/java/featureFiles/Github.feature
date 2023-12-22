@@ -15,15 +15,14 @@ Examples:
 
 @create
 Scenario Outline: Validate Github POST API
-
 Given Github POST API exists
 When Github POST API is called with the name <Project>
 Then Verify the status code is "<statusCode>"
 
 Examples: 
 |Project		  |statusCode|
-|TestRepo888|201|
-|TestRepo999|201|
+|TestRepository126|201|
+|TestRepository127|201|
 
 @delete
 Scenario Outline: Validate Github DELETE API

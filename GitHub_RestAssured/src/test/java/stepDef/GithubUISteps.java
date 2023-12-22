@@ -49,14 +49,14 @@ public class GithubUISteps {
 	@When("I create a repository on GitHub with name {string}")
 	public void createRepositories(String repoName) {
 		driver.findElement(By.xpath("//span[contains(text(),'New') and @class='Button-label']")).click();
-		driver.findElement(By.id(":r2:")).sendKeys(repoName);
+		driver.findElement(By.id(":r3:")).sendKeys(repoName);
 		boolean blnRepo = driver.findElement(By.id("RepoNameInput-is-available")).isDisplayed();
 		if (blnRepo) {
 			System.out.println("Repository is available");
 		} else {
 			System.out.println("Cannot create repo as it already exists");
 		}
-		driver.findElement(By.xpath("//input[@id=':r8:']")).click(); //Click ReadMe checkbox
+		driver.findElement(By.xpath("//input[@id=':r9:']")).click(); //Click ReadMe checkbox
 		driver.findElement(By.xpath("//span[contains(text(),'Create repository')]")).click();
 	}
 
