@@ -11,7 +11,7 @@ public class Test_Get_NotFound {
     public void test1() {
     	Response response = RestAssured.get("https://reqres.in/api/users/23");
     	System.out.println(response.getStatusCode());
-    	int StatusCode = response.getStatusCode();
+    	int StatusCode = response.getStatusCode(); 
     	Assert.assertEquals(StatusCode, 200, "Expected status code is not matching with the actual code");
     }
 }
