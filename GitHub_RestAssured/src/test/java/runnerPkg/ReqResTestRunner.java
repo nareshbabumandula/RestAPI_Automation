@@ -6,11 +6,11 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src\\test\\java\\featureFiles\\Github.feature",
+@CucumberOptions(features="src\\test\\java\\featureFiles\\ReqRes.feature",
 				 plugin ={"pretty","html:target/cucumber-reports.html","rerun:target/failedrerun.txt"},
 				 glue= {"stepDef", "resources"},
-				 tags = "@partialupdate")
-public class TestRunner {
+				 tags = "@getUser")
+public class ReqResTestRunner {
 
 	
 }
