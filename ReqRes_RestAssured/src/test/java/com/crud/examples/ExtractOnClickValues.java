@@ -7,7 +7,6 @@ public class ExtractOnClickValues {
     public static void main(String[] args) {
         String jsonString = "{\"menu\": {\"id\": \"file\",\"value\": \"File\",\"popup\": {\"menuitem\": [{\"value\": \"New\",\"onclick\": \"CreateDoc()\"},{\"value\": \"Open\",\"onclick\": \"OpenDoc()\"},{\"value\": \"Save\",\"onclick\": \"SaveDoc()\"}]}}}";
 
-        // Convert the JSON string to a JsonPath object
         JsonPath jsonPath = new JsonPath(jsonString);
 
         // Extract all onclick values using JsonPath
