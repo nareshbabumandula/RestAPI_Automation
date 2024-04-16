@@ -46,7 +46,7 @@ public class LoopThroughNestedJsonExample {
         // Get the "users" JSON array from the response
         //JSONArray usersArray = jsonObject.getJSONObject("data").getJSONArray("id");
         JSONArray usersArray = jsonObject.getJSONArray("data");
-
+        
         // Loop through the "users" array and fetch required data
         for (int i = 0; i < usersArray.length(); i++) {
             JSONObject userObject = usersArray.getJSONObject(i);

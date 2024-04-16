@@ -20,9 +20,13 @@ public class Test01_Get {
 		System.out.println(response.asString());
 		System.out.println(response.getBody().asString());
 		System.out.println(response.statusLine());
-
+	
 		int statusCode = response.getStatusCode();
 		Assert.assertEquals(statusCode, 200);
+		JsonPath jsonpath = response.jsonPath();
+		String email = jsonpath.get("data.email[0]");
+		System.out.println(email);
+		
 	}
 
 	@Test
