@@ -18,17 +18,12 @@ public class Test03_Post {
         System.out.println(request);
         System.out.println(request.toString());
 
-        given().
+        Response response = given().
                 body(request.toJSONString()).
                 when().
                 post("https://reqres.in/api/users").
-                then().statusCode(201);
-        
-        Response response = given()
-                .contentType(ContentType.JSON)
-                .body(request)
-                .post("https://reqres.in/api/users"); 
-
+                then().extract().response();
+             
         
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, 201, "Status code is not 201");

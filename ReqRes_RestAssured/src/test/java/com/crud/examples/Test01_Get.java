@@ -14,7 +14,7 @@ public class Test01_Get {
 
 	@Test
 	public void test() {
-		Response response = RestAssured.get("https://reqres.in/api/users?page=2");
+		Response response = RestAssured.get("https://abc.in/api/users?page=2");
 		System.out.println(response.getTime());
 		System.out.println(response.statusCode());
 		System.out.println(response.asString());
