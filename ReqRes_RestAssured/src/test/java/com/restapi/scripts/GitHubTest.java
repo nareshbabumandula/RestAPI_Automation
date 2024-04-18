@@ -61,6 +61,5 @@ public class GitHubTest {
 				.extract().response();
 		
 		response.then().statusCode(201);
-				
 	}
 }
