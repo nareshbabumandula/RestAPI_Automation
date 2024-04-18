@@ -15,6 +15,7 @@ public class APITest {
 		RestAssured.baseURI = "https://reqres.in";
 	}
 
+	
 	@Test
 	public void testCreateUser() {
 		String requestBody = "{\"name\": \"naresh\","
