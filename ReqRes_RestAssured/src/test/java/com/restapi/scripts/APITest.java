@@ -14,7 +14,6 @@ public class APITest {
 	public static void setup() {
 		RestAssured.baseURI = "https://reqres.in";
 	}
-
 	
 	@Test
 	public void testCreateUser() {
