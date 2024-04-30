@@ -14,7 +14,13 @@ public class Test01_Get {
 
 	@Test
 	public void test() {
-		Response response = RestAssured.get("https://abc.in/api/users?page=2");
+		/**
+		 * RestAssured.get()
+		 * 1. This method is a static method provided by the RestAssured class
+		 * 2. It is used for sending an HTTP GET request without any additional configuration
+		 * 3. It is typically used for simple GET requests where no addition customization is needed
+		 */
+		Response response = RestAssured.get("https://reqres.in/api/users/2");
 		System.out.println(response.getTime());
 		System.out.println(response.statusCode());
 		System.out.println(response.asString());
@@ -31,7 +37,15 @@ public class Test01_Get {
 
 	@Test
 	public void test1() {
-		given().get("https://reqres.in/api/users?page=2").then().statusCode(200)
+		/**
+		 * RestAssured.given().get()
+		 * 1. This is part of given/when/then syntax provided by RestAssured for writing more expressive and readable scripts
+		 * 2. The given() method allows you to set up pre-conditions or configurations for your request, such as
+		 * headers, parameters or authentication
+		 * 3. The get() method is then used to actually perform the HTTP GET request for the pre-conditions are set up.
+		 */
+		given().get("https://reqres.in/api/users?page=2").
+		then().statusCode(200).contentType("application/json")
 		.body("data.id[0]", equalTo(7))
 		.and().body("data.email[0]", equalTo("michael.lawson@reqres.in"));
 	}

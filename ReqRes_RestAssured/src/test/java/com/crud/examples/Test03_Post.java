@@ -18,11 +18,11 @@ public class Test03_Post {
         System.out.println(request);
         System.out.println(request.toString());
 
-        Response response = given().
+        Response response = given().  // pre-condition
                 body(request.toJSONString()).
-                when().
+                when(). // action
                 post("https://reqres.in/api/users").
-                then().extract().response();
+                then().extract().response(); // outcome
              
         
         int statusCode = response.getStatusCode();

@@ -63,12 +63,13 @@ public class GetBatters {
 				+ "    }\r\n"
 				+ "  ]\r\n"
 				+ "}";
-
+		
+		
 		// Parse the JSON response using Rest Assured's JsonPath
 		JsonPath jsonPath = new JsonPath(jsonResponse);
 
 		// Extract the 'type' attribute where 'id' is '1003'
-		String type = jsonPath.getString("batters.batter.find {it.id == '1003' }.type");
+		String type = jsonPath.getString("batters.batter.find {it.id == '1003'}.type");
 		String id = jsonPath.getString("batters.batter.find {it.type == 'Regular' }.id");
 
 		// Display the extracted 'type' attribute
