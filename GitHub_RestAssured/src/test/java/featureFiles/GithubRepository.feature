@@ -12,4 +12,4 @@ When I create a repository on GitHub with name "<Repo>"
 Then I can see the project created with name "<Repo>"
 Examples:
 |Repo|
-|TestRepository124|
+|TestRepo1111|

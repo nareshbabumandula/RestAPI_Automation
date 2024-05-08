@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -47,16 +48,17 @@ public class GithubUISteps {
 	}
 
 	@When("I create a repository on GitHub with name {string}")
-	public void createRepositories(String repoName) {
+	public void createRepositories(String repoName) throws InterruptedException {
 		driver.findElement(By.xpath("//span[contains(text(),'New') and @class='Button-label']")).click();
-		driver.findElement(By.id(":r3:")).sendKeys(repoName);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//span[contains(@class,'TextInputWrapper')]/input[@id=':r7:']")).sendKeys(repoName);
 		boolean blnRepo = driver.findElement(By.id("RepoNameInput-is-available")).isDisplayed();
 		if (blnRepo) {
 			System.out.println("Repository is available");
 		} else {
 			System.out.println("Cannot create repo as it already exists");
 		}
-		driver.findElement(By.xpath("//input[@id=':r9:']")).click(); //Click ReadMe checkbox
+		driver.findElement(By.xpath("//input[@id=':rd:']")).click(); //Click ReadMe checkbox
 		driver.findElement(By.xpath("//span[contains(text(),'Create repository')]")).click();
 	}
 
