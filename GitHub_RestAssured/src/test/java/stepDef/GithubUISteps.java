@@ -51,14 +51,15 @@ public class GithubUISteps {
 	public void createRepositories(String repoName) throws InterruptedException {
 		driver.findElement(By.xpath("//span[contains(text(),'New') and @class='Button-label']")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//span[contains(@class,'TextInputWrapper')]/input[@id=':r7:']")).sendKeys(repoName);
+		driver.findElement(By.xpath("//input[@aria-describedby='RepoNameInput-is-available RepoNameInput-message']")).sendKeys(repoName);
 		boolean blnRepo = driver.findElement(By.id("RepoNameInput-is-available")).isDisplayed();
 		if (blnRepo) {
 			System.out.println("Repository is available");
 		} else {
 			System.out.println("Cannot create repo as it already exists");
 		}
-		driver.findElement(By.xpath("//input[@id=':rd:']")).click(); //Click ReadMe checkbox
+		driver.findElement(By.xpath("//input[@name='Description']")).sendKeys("This repo is created via Selenium");
+		driver.findElement(By.xpath("//input[@type='checkbox' and contains(@id,':r')]")).click(); //Click ReadMe checkbox
 		driver.findElement(By.xpath("//span[contains(text(),'Create repository')]")).click();
 	}
 
